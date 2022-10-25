@@ -5,15 +5,16 @@ let roid4;
 let roid5;
 let roid6;
 let incx,incy;
+let a=0;
 function setup() {
     createCanvas(1400, 700);
     angleMode(DEGREES);
-    roid1=new Roid(100,100,[],random(-4,4),random(-4,4));
-    roid2=new Roid(300,100,[],random(-4,4),random(-4,4));
-    roid3=new Roid(500,100,[],random(-4,4),random(-4,4));
-    roid4=new Roid(100,250,[],random(-4,4),random(-4,4));
-    roid5=new Roid(300,250,[],random(-4,4),random(-4,4));
-    roid6=new Roid(500,250,[],random(-4,4),random(-4,4));
+    roid1=new Roid(100,100,[],random(-4,4),random(-4,4),20);
+    roid2=new Roid(300,100,[],random(-4,4),random(-4,4),20);
+    roid3=new Roid(500,100,[],random(-4,4),random(-4,4),20);
+    roid4=new Roid(100,250,[],random(-4,4),random(-4,4),20);
+    roid5=new Roid(300,250,[],random(-4,4),random(-4,4),20);
+    roid6=new Roid(500,250,[],random(-4,4),random(-4,4),20);
 
 
   }
@@ -72,7 +73,7 @@ peep="";
 peep1="";
 
 class Roid {
-    constructor(startx,starty,p,incx,incy) {
+    constructor(startx,starty,p,incx,incy,a) {
           this.startx=startx;
           this.starty=starty;
           this.incx=incx;
@@ -83,8 +84,9 @@ class Roid {
           this.l=l;
           this.t=t;
           this.v=v;
+          this.a=a;
       for (let x=0; x<this.r; x++) {
-      this.p[x]=random(20,30);
+      this.p[x]=random(2*this.a,3*this.a);
   }
               this.l=360/this.r;
 
