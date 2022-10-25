@@ -53,14 +53,7 @@ function draw() {
     roid6.bubble();
     roid6.move();     
     roid6.border();
-
-//     if (q==1000){
-      
-//           noLoop();
-// }
-//    q+=1;
-  // roid1.bubble();
-  // roid2.bubble();
+    triangle(width/2,height/2,(width/2)+20,(height/2)+50,(width/2)-20,(height/2)+50);
 
   }
 let r=0;
