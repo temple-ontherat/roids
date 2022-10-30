@@ -7,7 +7,7 @@ let roid6;
 let incx,incy;
 let a=0;
 function setup() {
-    createCanvas(800, 700);
+    createCanvas(800, 600);
     angleMode(DEGREES);
     roid1=new Roid(100,100,[],random(-4,4),random(-4,4),20);
     roid2=new Roid(300,100,[],random(-4,4),random(-4,4),20);
