@@ -9,12 +9,12 @@ let a=0;
 function setup() {
     createCanvas(320, 500);
     angleMode(DEGREES);
-    roid1=new Roid(100,100,[],random(-4,4),random(-4,4),20);
-    roid2=new Roid(300,100,[],random(-4,4),random(-4,4),20);
-    roid3=new Roid(500,100,[],random(-4,4),random(-4,4),20);
-    roid4=new Roid(100,250,[],random(-4,4),random(-4,4),20);
-    roid5=new Roid(300,250,[],random(-4,4),random(-4,4),20);
-    roid6=new Roid(500,250,[],random(-4,4),random(-4,4),20);
+    roid1=new Roid(100,100,[],random(-4,4),random(-4,4),10);
+    roid2=new Roid(300,100,[],random(-4,4),random(-4,4),10);
+    roid3=new Roid(500,100,[],random(-4,4),random(-4,4),10);
+    roid4=new Roid(100,250,[],random(-4,4),random(-4,4),10);
+    roid5=new Roid(300,250,[],random(-4,4),random(-4,4),10);
+    roid6=new Roid(500,250,[],random(-4,4),random(-4,4),10);
 
 
   }
