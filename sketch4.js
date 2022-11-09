@@ -1,22 +1,34 @@
-let roid1;
-let roid2;
-let roid3;
-let roid4;
-let roid5;
-let roid6;
+
+let roids=[];
 let incx,incy;
 let a=0;
+let triPosx;
+let triPosy;
+let rotAngle=0;
+let triVecPos;
+let triVecPos2;
+let triVecPos3;
+let triVecVel;
+let ammoVecPos;
+let ammoPosx, ammoPosy;
+//let shot=False;
+
 function setup() {
-    createCanvas(320, 500);
+    createCanvas(1400, 600);
     angleMode(DEGREES);
-    roid1=new Roid(100,100,[],random(-4,4),random(-4,4),10);
-    roid2=new Roid(300,100,[],random(-4,4),random(-4,4),10);
-    roid3=new Roid(500,100,[],random(-4,4),random(-4,4),10);
-    roid4=new Roid(100,250,[],random(-4,4),random(-4,4),10);
-    roid5=new Roid(300,250,[],random(-4,4),random(-4,4),10);
-    roid6=new Roid(500,250,[],random(-4,4),random(-4,4),10);
-
-
+    roids[0]=new Roid(100,100,[],random(-4,4),random(-4,4),20);
+    roids[1]=new Roid(300,100,[],random(-4,4),random(-4,4),15);
+    roids[2]=new Roid(500,100,[],random(-4,4),random(-4,4),10);
+    roids[3]=new Roid(100,250,[],random(-4,4),random(-4,4),22);
+    roids[4]=new Roid(300,250,[],random(-4,4),random(-4,4),17);
+    roids[5]=new Roid(500,250,[],random(-4,4),random(-4,4),14);
+    triPosx=width/2;
+    triPosy=height/2;
+    triVecPos= createVector(0,-25);
+    triVecPos2= createVector(20,25);
+    triVecPos3= createVector(-20,25);
+    triVecVel= createVector(0,0);
+p=createP('This works best on a laptop. Use the arrows to make the ship do various things. Still have to give ship and shots some physics, add collision detection for ship-to-astroid and shot-to-astroid, and then add the alien ship; maybe a pilot jumps out of the ship and is able to jump from astroid to astroid, continuing to shoot up roids and alien ships-- sort of an astroids/frogger combo? Practically all of this is thanks to Daniel Shiffman.')
   }
 let x=0;
 let y=0;
@@ -29,115 +41,64 @@ function draw() {
     background(220);
     // if (stop==1000) {
     //     noLoop();
-    // }   
-    roid1.bubble();
-      roid1.move();    
-    roid1.border();
+    // }
+    for (let i=0;i<roids.length;i++) {   
+    roids[i].bubble();
+      roids[i].move();    
+    roids[i].border();
+    }
+    
+    if (keyIsDown(LEFT_ARROW)) {
+      triVecPos.rotate(-4);
+      triVecPos2.rotate(-4);
+      triVecPos3.rotate(-4);
 
-    roid2.bubble();
-      roid2.move();
-    roid2.border();
+    } else if (keyIsDown(RIGHT_ARROW)) {
+      triVecPos.rotate(4);
+      triVecPos2.rotate(4);
+      triVecPos3.rotate(4);
+    }
+   else if (keyIsDown(UP_ARROW)) {
+    ammoPosx=triPosx;
+    ammoPosy=triPosy;
 
-    roid3.bubble();
-      roid3.move();
-    roid3.border();
+    for (let i=1; i<10;i++){
+      triVecPosCopy=triVecPos.copy();
+      triVecPosCopy.normalize();
 
-    roid4.bubble();
-      roid4.move();    
-    roid4.border();
+      triVecPosCopy.mult(i); 
+      push();
 
-    roid5.bubble();
-      roid5.move();    
-    roid5.border();
+      translate(ammoPosx,ammoPosy);
+  fill(255);
+    ellipse(triVecPosCopy.x,triVecPosCopy.y,4);
+    pop();
 
-    roid6.bubble();
-    roid6.move();     
-    roid6.border();
-    triangle(width/2,height/2,(width/2)+20,(height/2)+50,(width/2)-20,(height/2)+50);
+    ammoPosy=ammoPosy+ 3*(triVecPosCopy.y);   
+    ammoPosx=ammoPosx+ 3*(triVecPosCopy.x); 
+
+    }
 
   }
+    else if (keyIsDown(DOWN_ARROW)) {
+      triVecPosCopy=triVecPos.copy();
+      triVecPos2Copy=triVecPos2.copy();
+      triVecPos3Copy=triVecPos3.copy();
+      triVecPosCopy.normalize();
+      triVecPos2Copy.normalize();
+      triVecPos3Copy.normalize();
+      triPosy=triPosy+ 3*(triVecPosCopy.y);
+    
+       triPosx=triPosx+ 3*(triVecPosCopy.x);    }
+
+   translate(triPosx,triPosy);
+    fill(255);
+    triangle(triVecPos.x,triVecPos.y,triVecPos2.x,triVecPos2.y,triVecPos3.x,triVecPos3.y)
+    }    
 let r=0;
 let p=[];
 let t=[];
 let v;
 let l;
-let s=10, w=490;
-peep="";
-peep1="";
 
-class Roid {
-    constructor(startx,starty,p,incx,incy,a) {
-          this.startx=startx;
-          this.starty=starty;
-          this.incx=incx;
-          this.incy=incy;
-          this.r=random(15,20);
-          this.r=this.r.toFixed(0);
-          this.p=p;
-          this.l=l;
-          this.t=t;
-          this.v=v;
-          this.a=a;
-      for (let x=0; x<this.r; x++) {
-      this.p[x]=random(2*this.a,3*this.a);
-  }
-              this.l=360/this.r;
 
-    } 
-  
-// randomize() {for (let x=0; x<this.r; x++) {
-//     this.p[x]=random(40,60);
-//   }
-//   this.ran=true;
-//  // return p[4], p[5], p[6],p[7];
-//   return this.p,this.r,this.ran;
-//             }
-bubble() {
-    this.v = createVector(100, 100);
- 
-  //  this.l = 360 / this.r;
-    push();
-    translate(this.startx, this.starty);
-    beginShape();  
-    for (let z = 0; z < this.r; z++) {
-      strokeWeight(1);
-      this.t[z] = this.v.copy();
-      this.t[z].rotate(this.l * z);
-      this.t[z].normalize();
-      this.t[z].mult(this.p[z]);
-      vertex(this.t[z].x, this.t[z].y);
-    }
-    endShape(CLOSE);
-  // this.peep1=createP(this.p);
-  //       this.peep1.position(s,w);
-  //     s+=50;w+=100;   
-    pop();
-    }   
-move() {
-    
- //   translate(this.startx,this.starty);
-    this.startx+=this.incx;
-    this.starty+=this.incy;
-    
-}
-border() {
-    if (this.startx>width) {
-        this.startx=0;
-      }
-    if (this.startx<0) {
-        this.startx=width;
-    }
-      if (this.starty>height) {
-        this.starty=0;
-      }
-    if (this.starty<0) {
-        this.starty=height;
-}
-}
-}
-function mousePressed() {
-  if (mouseX > 0 && mouseX < 100 && mouseY > 0 && mouseY < 100) {
-    let fs = fullscreen();
-    fullscreen(!fs);
-  }
-}
