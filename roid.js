@@ -51,8 +51,8 @@ bubble() {
 move() {
     
  //   translate(this.startx,this.starty);
-    this.startx+=this.incx;
-    this.starty+=this.incy;
+    this.startx+=5*this.incx;
+    this.starty+=5*this.incy;
     
 }
 border() {
