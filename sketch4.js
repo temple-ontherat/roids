@@ -1,4 +1,5 @@
 
+
 let roids=[];
 let incx,incy;
 let a=0;
@@ -11,6 +12,7 @@ let triVecPos3;
 let triVecVel;
 let ammoVecPos;
 let ammoPosx, ammoPosy;
+let triVecPosCopy;
 //let shot=False;
 
 function setup() {
@@ -39,26 +41,37 @@ msecs=0;
 function draw() {
     
     background(220);
-    // if (stop==1000) {
-    //     noLoop();
-    // }
     for (let i=0;i<roids.length;i++) {   
     roids[i].bubble();
-      roids[i].move();    
+    roids[i].move();    
     roids[i].border();
-    }
-    
+    }  
     if (keyIsDown(LEFT_ARROW)) {
-      triVecPos.rotate(-4);
-      triVecPos2.rotate(-4);
-      triVecPos3.rotate(-4);
-
-    } else if (keyIsDown(RIGHT_ARROW)) {
-      triVecPos.rotate(4);
-      triVecPos2.rotate(4);
-      triVecPos3.rotate(4);
+        left();     
+    } if (keyIsDown(RIGHT_ARROW)) {
+      right();
     }
-   else if (keyIsDown(UP_ARROW)) {
+   if (keyIsDown(UP_ARROW)) {
+    up();    
+  }
+    if (keyIsDown(DOWN_ARROW)) {
+      down();
+    }
+    // else if (keyIsDown(UP_ARROW) && keyIsDown(RIGHT_ARROW)) {
+    //     up();
+    //     right();
+    // }
+function left() {
+    triVecPos.rotate(-4);
+    triVecPos2.rotate(-4);
+    triVecPos3.rotate(-4);    
+}
+function right() {
+    triVecPos.rotate(4);
+    triVecPos2.rotate(4);
+    triVecPos3.rotate(4);
+}
+function up() {
     ammoPosx=triPosx;
     ammoPosy=triPosy;
 
@@ -76,29 +89,29 @@ function draw() {
 
     ammoPosy=ammoPosy+ 3*(triVecPosCopy.y);   
     ammoPosx=ammoPosx+ 3*(triVecPosCopy.x); 
-
     }
-
-  }
-    else if (keyIsDown(DOWN_ARROW)) {
-      triVecPosCopy=triVecPos.copy();
-      triVecPos2Copy=triVecPos2.copy();
-      triVecPos3Copy=triVecPos3.copy();
-      triVecPosCopy.normalize();
-      triVecPos2Copy.normalize();
-      triVecPos3Copy.normalize();
-      triPosy=triPosy+ 3*(triVecPosCopy.y);
-    
-       triPosx=triPosx+ 3*(triVecPosCopy.x);    }
-
-   translate(triPosx,triPosy);
-    fill(255);
-    triangle(triVecPos.x,triVecPos.y,triVecPos2.x,triVecPos2.y,triVecPos3.x,triVecPos3.y)
-    }    
+    }
+ 
+function down() {
+    triVecPosCopy=triVecPos.copy();
+    triVecPos2Copy=triVecPos2.copy();
+    triVecPos3Copy=triVecPos3.copy();
+    triVecPosCopy.normalize();
+    triVecPos2Copy.normalize();
+    triVecPos3Copy.normalize();
+    triPosy=triPosy+ 3*(triVecPosCopy.y);
+    triPosx=triPosx+ 3*(triVecPosCopy.x);    }
+  translate(triPosx,triPosy);
+  fill(255);
+  triangle(triVecPos.x,triVecPos.y,triVecPos2.x,triVecPos2.y,triVecPos3.x,triVecPos3.y)  
+ }    
 let r=0;
 let p=[];
 let t=[];
 let v;
 let l;
+
+
+
 
 
