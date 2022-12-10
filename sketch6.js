@@ -54,7 +54,7 @@ function setup() {
     transVec=createVector(triPosx,triPosy);
     triVecVelCopy=createVector(0,0);
     trix=createVector(0,0);
-p=createP('This works best on a laptop. Use the arrows keys to control ship.')
+//p=createP('This works best on a laptop. Use the arrows keys to control ship.')
   }
 let x=0;
 let y=0;
