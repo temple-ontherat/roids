@@ -29,7 +29,7 @@ class Shot {
     show(){    //Shot
      push();
     translate(this.pos.x,this.pos.y)   
-    ellipse(0,0, this.radius*2);
+    ellipse(tri.pt[0].x,tri.pt[0].y, this.radius*2);
     pop();
    // this.inc++;     
     } 
