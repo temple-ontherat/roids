@@ -9,7 +9,7 @@ let guys=[];
 transMag=0;
 let timex=0;
 let score=0;
-let timeStart=80;
+let timeStart=85;
 function setup() {
   createCanvas(1500, 700);
   angleMode(DEGREES);
