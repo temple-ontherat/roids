@@ -9,7 +9,7 @@ let guys=[];
 transMag=0;
 let timex=0;
 let score=0;
-let timeStart=60;
+let timeStart=80;
 function setup() {
   createCanvas(1500, 700);
   angleMode(DEGREES);
@@ -55,7 +55,7 @@ if (timex<0) {
   if (roids.length==0){
     startTime=Math.floor(millis()/1000);
  //   timex=0;
-
+    timeStart=timeStart-5;
     makeRoids(40);
   //  break;
 
