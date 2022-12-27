@@ -2,7 +2,8 @@ class Shot {
     constructor(){
     this.radius=2;
     this.bults=0;
-    this.pos=createVector(tri.pos.x,tri.pos.y);
+    //   this.pos=createVector(tri.pos.x,tri.pos.y);
+    this.pos=createVector(tri.pt[0].x+750,tri.pt[0].y+350) ;
     this.vel=createVector(0,0);
     this.angle=(ang*PI/180)-PI/2;
     this.thrust=p5.Vector.fromAngle(this.angle);
@@ -29,7 +30,7 @@ class Shot {
     show(){    //Shot
      push();
     translate(this.pos.x,this.pos.y)   
-    ellipse(tri.pt[0].x,tri.pt[0].y, this.radius*2);
+    ellipse(0,0, this.radius*2);
     pop();
    // this.inc++;     
     } 
