@@ -167,7 +167,7 @@ function checkShotCrash() {
    for(j=0; j<roids.length; j++) {
    
   //   distance=p5.Vector.dist(shot[i].pos,roids[j].pos);
-     if ((roids[j].radius==40) && (shot[i].pos.dist(roids[j].pos)<48)) {
+     if ((roids[j].radius==40) && (shot[i].pos.dist(roids[j].pos)<40)) {
     //   roids.splice(j,1);
        x=roids[j].pos.x;
        y=roids[j].pos.y;
@@ -176,7 +176,7 @@ function checkShotCrash() {
        score=score+50;
        break;
      }
-     if ((roids[j].radius==20) && (shot[i].pos.dist(roids[j].pos)<28)) {
+     if ((roids[j].radius==20) && (shot[i].pos.dist(roids[j].pos)<20)) {
       //   roids.splice(j,1);
       //   x=roids[j].pos.x;
       //   y=roids[j].pos.y;
