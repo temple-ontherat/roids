@@ -12,14 +12,20 @@ let score=0;
 let timeStart=80;
 function setup() {
   createCanvas(displayWidth, displayHeight);
+  //butt=createButton("Click here to enter fullscreen"+
+  //" and start game.");
+  //butt.position(width/3,20);
   angleMode(DEGREES);
   tri=new Ship();
   bults=0;
   u=0;
   rot=5;
   roidAmt=15;
-  textSize(2);
-  displayMessage="Press F for fullscreen and back."
+  textSize(40);
+  displayMessage="Hit enter to start game.";
+  displayMessage2="Right and left arrows for";
+  displayMessage3="turning, up arrow for thrust,";
+  displayMessage4="and space bar for shooting.";
   startTime=Math.floor(millis()/1000);
   for (i=0; i<3; i++) {
     guys[i]=new Guys();
@@ -29,10 +35,16 @@ function setup() {
 //   for (i=0; i<bults; i++) {
 //     shot[i]=new Shot();
 //   }
+noLoop();
 }
 function draw() {
   background(220);
-  text(displayMessage, width/4,50);
+  text(displayMessage, width*2/7,55);
+  textSize(20);
+  text(displayMessage2, width/3,86);
+  text(displayMessage3, width/3,115);
+  text(displayMessage4, width/3,145);
+
   for (roid in roids) {
     
     roids[roid].show();
@@ -85,37 +97,12 @@ if (timex<0) {
   if (keyIsDown(LEFT_ARROW)) {
     tri.rotateLeft();
   }
-  // if (keyIsDown(UP_ARROW)) {
-  //  // ang=u;
-  //   blast();
-    
-      
-  //     if (shot.length<6) {
-  //     //  shot.shift();
-  //       shot.push(new Shot);
-  //     }
-  //     else {
-  //       shot.shift();
-  //     }
-     
-  //   }
-    
-    
-  
-  
-//  console.log(tri.pos.x,tri.pos.y,tri.pt[0].x,tri.pt[0].y)
     for (i=0; i<shot.length; i++) {
         shot[i].show();
         shot[i].update();
       if ((shot.length>0) && (shot[i].pos.dist(tri.pos)>300)) {
         shot.splice(i,1);
       } 
-       
-      // if ((shot[i].pos.x<0) || (shot[i].pos.x>width) || (shot[i].pos.y<0) ||
-      // (shot[i].pos.y>height)) {
-      //   shot.splice(i,1);
-      // }
-    
         }
         tri.update();
         tri.edges();
@@ -125,22 +112,9 @@ if (timex<0) {
         tri.color=255;
         test=0;
         }
-        // if ((crash==true) && (tri.color!==255)) {
-        //   console.log("crash is true, color is white.")
-        //   guys.pop(guys.length-1);
-        //   console.log("test", test);
-        //   test++;
-        // }
-        // if (crash==true){console.log("poop")};
         crash=false;
-        
- // console.log(shot.length);
-  // if (shot.length>16) {
-  //   shot.shift();
-  // }
 }
-function keyPressed() {
-   
+function keyPressed() {  
    if (keyCode === 32) {
     blast();
  //   console.log("first shot pos",shot[0].pos.x,shot[0].pos.y);
@@ -148,10 +122,18 @@ function keyPressed() {
    if (keyCode === 68) {
  //   console.log("ship position",tri.pos.x,tri.pos.y);
    }
-   if (keyCode === 70) {
+   if (keyCode === ENTER) {
+    displayMessage="";
+    displayMessage2="";
+    displayMessage3="";
+    displayMessage4="";
+   loop();
    let fs=fullscreen();
    fullscreen(!fs);
    displayMessage="";
+   }
+   if (keyCode === 80) {
+      noLoop();
    }
 }
 
@@ -246,6 +228,7 @@ function gameOver() {
       text("Game Over",width/2,height/2);
       textSize(50);
       text("Press refresh to play again",width/2,height/2+60);
+      text("   Press Esc to leave fullscreen mode.", width/4, height/6);
       fill(255);
       text("Score: "+score,width*3/4,50);
       if (timex<0) {
@@ -258,3 +241,4 @@ function gameOver() {
 //   crash=false;
 // }
 }
+
