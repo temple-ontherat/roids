@@ -9,9 +9,9 @@ let guys=[];
 transMag=0;
 let timex=0;
 let score=0;
-let timeStart=85;
+let timeStart=80;
 function setup() {
-  createCanvas(1500, 700);
+  createCanvas(1300, 600);
   angleMode(DEGREES);
   tri=new Ship();
   bults=0;
@@ -45,7 +45,7 @@ if (timex<0) {
   gameOver();
 }
   else {text("Timer: "+timex,50,50)};
-  text("Score: "+score,1200,50);
+  text("Score: "+score,width*3/4,50);
   // if ((roids.length==0) || (shotCount>30)){
   //   makeRoids();
   //   shotCount=0;
@@ -64,7 +64,7 @@ if (timex<0) {
   q=0;
   for (guy in guys) {
     
-    guys[guy].show(25*q+25,670);
+    guys[guy].show(25*q+25,height*21/22);
     q++;
   }
  // console.log(tri.pos.x,tri.pos.y,tri.pt11.x,tri.pt11.y);
@@ -167,7 +167,7 @@ function checkShotCrash() {
    for(j=0; j<roids.length; j++) {
    
   //   distance=p5.Vector.dist(shot[i].pos,roids[j].pos);
-     if ((roids[j].radius==40) && (shot[i].pos.dist(roids[j].pos)<40)) {
+     if ((roids[j].radius==40) && (shot[i].pos.dist(roids[j].pos)<48)) {
     //   roids.splice(j,1);
        x=roids[j].pos.x;
        y=roids[j].pos.y;
@@ -176,7 +176,7 @@ function checkShotCrash() {
        score=score+50;
        break;
      }
-     if ((roids[j].radius==20) && (shot[i].pos.dist(roids[j].pos)<20)) {
+     if ((roids[j].radius==20) && (shot[i].pos.dist(roids[j].pos)<28)) {
       //   roids.splice(j,1);
       //   x=roids[j].pos.x;
       //   y=roids[j].pos.y;
@@ -244,7 +244,7 @@ function gameOver() {
       textSize(50);
       text("Press refresh to play again",width/2,height/2+60);
       fill(255);
-      text("Score: "+score,1200,50);
+      text("Score: "+score,width*3/4,50);
       if (timex<0) {
    //     background(0);
         fill('red');
