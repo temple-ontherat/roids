@@ -11,7 +11,7 @@ let timex=0;
 let score=0;
 let timeStart=80;
 function setup() {
-  createCanvas(1300, 600);
+  createCanvas(1200, 600);
   angleMode(DEGREES);
   tri=new Ship();
   bults=0;
