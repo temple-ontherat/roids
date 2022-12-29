@@ -11,13 +11,15 @@ let timex=0;
 let score=0;
 let timeStart=80;
 function setup() {
-createCanvas(displayWidth, displayHeight);
+  createCanvas(displayWidth, displayHeight);
   angleMode(DEGREES);
   tri=new Ship();
   bults=0;
   u=0;
   rot=5;
   roidAmt=15;
+  textSize(2);
+  displayMessage="Press F for fullscreen and back."
   startTime=Math.floor(millis()/1000);
   for (i=0; i<3; i++) {
     guys[i]=new Guys();
@@ -30,6 +32,7 @@ createCanvas(displayWidth, displayHeight);
 }
 function draw() {
   background(220);
+  text(displayMessage, width/4,50);
   for (roid in roids) {
     
     roids[roid].show();
@@ -146,9 +149,9 @@ function keyPressed() {
  //   console.log("ship position",tri.pos.x,tri.pos.y);
    }
    if (keyCode === 70) {
-  //   console.log("tri.pt[7] position",tri.pt[7].x,tri.pt[7].y);
-   // console.log("joeX and joeY",joeX,joeY);
-
+   let fs=fullscreen();
+   fullscreen(!fs);
+   displayMessage="";
    }
 }
 
