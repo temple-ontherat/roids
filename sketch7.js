@@ -23,9 +23,9 @@ function setup() {
   roidAmt=15;
   textSize(40);
   displayMessage="Hit enter to start game.";
-  displayMessage2="Right and left arrows for";
-  displayMessage3="turning, up arrow for thrust,";
-  displayMessage4="and space bar for shooting.";
+  displayMessage2="Right and left arrows for turning, up arrow";
+  displayMessage3="for thrust, and space bar for shooting.";
+  //displayMessage4="and space bar for shooting.";
   startTime=Math.floor(millis()/1000);
   for (i=0; i<3; i++) {
     guys[i]=new Guys();
@@ -39,11 +39,11 @@ noLoop();
 }
 function draw() {
   background(220);
-  text(displayMessage, width*2/7,55);
+  text(displayMessage, width/3,55);
   textSize(20);
   text(displayMessage2, width/3,86);
   text(displayMessage3, width/3,115);
-  text(displayMessage4, width/3,145);
+ // text(displayMessage4, width/3,145);
 
   for (roid in roids) {
     
@@ -228,7 +228,7 @@ function gameOver() {
       text("Game Over",width/2,height/2);
       textSize(50);
       text("Press refresh to play again",width/2,height/2+60);
-      text("   Press Esc to leave fullscreen mode.", width/4, height/6);
+      text("Press Esc to leave fullscreen mode.", width/3, height/6);
       fill(255);
       text("Score: "+score,width*3/4,50);
       if (timex<0) {
@@ -241,4 +241,3 @@ function gameOver() {
 //   crash=false;
 // }
 }
-
