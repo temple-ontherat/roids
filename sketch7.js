@@ -10,6 +10,22 @@ transMag=0;
 let timex=0;
 let score=0;
 let timeStart=80;
+let mySound;
+function preload() {
+  soundFormats('mp3', 'ogg');
+  sound1 = loadSound('pyowpyow.mp3');
+  sound2=loadSound('roidBurst.mp3');
+  sound3=loadSound('shipCrash.mp3');  
+}
+function pyow() {
+  sound1.play();
+}
+function roidBurst(){
+  sound2.play();
+}
+function shipCrash() {
+  sound3.play();
+}
 function setup() {
   createCanvas(displayWidth, displayHeight);
   //butt=createButton("Click here to enter fullscreen"+
@@ -116,6 +132,7 @@ if (timex<0) {
 }
 function keyPressed() {  
    if (keyCode === 32) {
+    pyow();
     blast();
  //   console.log("first shot pos",shot[0].pos.x,shot[0].pos.y);
    }
@@ -159,6 +176,7 @@ function checkShotCrash() {
        roids.splice(j, 1, new Roid(20,x,y), new Roid(20,x,y));    
        shot.splice(i,1);
        score=score+50;
+       roidBurst();
        break;
      }
      if ((roids[j].radius==20) && (shot[i].pos.dist(roids[j].pos)<28)) {
@@ -169,6 +187,7 @@ function checkShotCrash() {
          roids.splice(j, 1);       
          shot.splice(i,1);
          score=score+10;
+         roidBurst();
          break;
        }     
 //    console.log(shot[i].pos.dist(roids[j].pos),i,j);
@@ -187,7 +206,8 @@ function checkShipCrash() {
       for (i=0; i<12; i++) {
           joe = p5.Vector.add(tri.pt[i], tri.pos);
           if ((joe.dist(roids[j].pos)<roids[j].radius-2)) {
-          crash=true;  
+          crash=true;
+          shipCrash();  
           crashShip();
        //   console.log('true')
           break;          
@@ -241,3 +261,4 @@ function gameOver() {
 //   crash=false;
 // }
 }
+
