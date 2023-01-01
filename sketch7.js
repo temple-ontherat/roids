@@ -42,6 +42,8 @@ function setup() {
   displayMessage="Hit enter to start game.";
   displayMessage2="Right and left arrows for turning, up arrow";
   displayMessage3="for thrust, and space bar for shooting.";
+  displayMessage4="Press P to pause the game.";
+ 
   //displayMessage4="and space bar for shooting.";
   startTime=Math.floor(millis()/1000);
   for (i=0; i<3; i++) {
@@ -60,6 +62,8 @@ function draw() {
   textSize(20);
   text(displayMessage2, width/3,86);
   text(displayMessage3, width/3,115);
+  text(displayMessage4, width/3,144);
+
  // text(displayMessage4, width/3,145);
 
   for (roid in roids) {
@@ -275,6 +279,3 @@ function gameOver() {
 //   crash=false;
 // }
 }
-
-
-
