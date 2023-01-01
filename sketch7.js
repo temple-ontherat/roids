@@ -68,7 +68,8 @@ function draw() {
     roids[roid].update();
     roids[roid].edges();
   }
-  timex=timeStart-(Math.floor(millis()/1000)-startTime);
+   timex=timeStart-(Math.floor(millis()/1000)-startTime);
+
 textSize(50);
 if (timex<0) {
   background(0);
@@ -154,14 +155,16 @@ function keyPressed() {
    displayMessage="";
    }
    if (keyCode === 80) {
-    timeStart=timex;
-    if (toggle<0) {
+    if (toggle<0) { 
+    startTime=Math.floor(millis()/1000);
+    timeStart=tempTime;
       loop();
-      startTime=Math.floor(millis()/1000);
     }
-    else {noLoop()}
+    else {
+      tempTime=timex;
+      noLoop();
+    }
     toggle=toggle*-1;
-   // startTime=Math.floor(millis()/1000);
    }
 }
 
@@ -272,5 +275,6 @@ function gameOver() {
 //   crash=false;
 // }
 }
+
 
 
