@@ -32,6 +32,7 @@ function setup() {
   //" and start game.");
   //butt.position(width/3,20);
   angleMode(DEGREES);
+  toggle=1;
   tri=new Ship();
   bults=0;
   u=0;
@@ -144,13 +145,23 @@ function keyPressed() {
     displayMessage2="";
     displayMessage3="";
     displayMessage4="";
+    timeStart=80;
+    startTime=Math.floor(millis()/1000);
+
    loop();
    let fs=fullscreen();
    fullscreen(!fs);
    displayMessage="";
    }
    if (keyCode === 80) {
-      noLoop();
+    timeStart=timex;
+    if (toggle<0) {
+      loop();
+      startTime=Math.floor(millis()/1000);
+    }
+    else {noLoop()}
+    toggle=toggle*-1;
+   // startTime=Math.floor(millis()/1000);
    }
 }
 
@@ -261,4 +272,5 @@ function gameOver() {
 //   crash=false;
 // }
 }
+
 
