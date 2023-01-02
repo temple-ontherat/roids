@@ -23,6 +23,8 @@ class Roid {
     translate(this.pos.x,this.pos.y);
     fill('white');
     ellipse(0,0,this.radius*2);
+    imageMode(CENTER);
+    image(image1,0,0,this.radius*2+5,this.radius*2+5);
     pop();
   }   //Roid
   edges() {
