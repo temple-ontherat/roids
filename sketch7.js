@@ -149,7 +149,7 @@ function keyPressed() {
     displayMessage2="";
     displayMessage3="";
     displayMessage4="";
-    timeStart=80;
+    timeStart=90;
     startTime=Math.floor(millis()/1000);
 
    loop();
