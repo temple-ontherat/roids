@@ -6,16 +6,18 @@ let u;
 let q;
 let test=0;
 let guys=[];
-transMag=0;
 let timex=0;
 let score=0;
 let timeStart=80;
-let mySound;
+let sound1,sound2,sound3;
 function preload() {
   soundFormats('mp3', 'ogg');
   sound1 = loadSound('pyowpyow.mp3');
   sound2=loadSound('roidBurst.mp3');
-  sound3=loadSound('shipCrash.mp3');  
+  sound3=loadSound('shipCrash.mp3');
+  image1=loadImage('roidImg3.png'); 
+  image2=loadImage('spaceImg.png'); 
+
 }
 function pyow() {
   sound1.play();
@@ -34,7 +36,6 @@ function setup() {
   angleMode(DEGREES);
   toggle=1;
   tri=new Ship();
-  bults=0;
   u=0;
   rot=5;
   roidAmt=15;
@@ -50,14 +51,12 @@ function setup() {
     guys[i]=new Guys();
 
   }
- // makeRoids();
-//   for (i=0; i<bults; i++) {
-//     shot[i]=new Shot();
-//   }
 noLoop();
 }
 function draw() {
   background(220);
+  image(image2,0,0);
+fill(255);
   text(displayMessage, width/3,55);
   textSize(20);
   text(displayMessage2, width/3,86);
@@ -81,7 +80,7 @@ if (timex<0) {
   text("Time's up.",50,50);
   gameOver();
 }
-  else {text("Timer: "+timex,50,50)};
+  else {text("Fuel: "+timex,50,50)};
   text("Score: "+score,width*3/4,50);
   // if ((roids.length==0) || (shotCount>30)){
   //   makeRoids();
@@ -279,3 +278,4 @@ function gameOver() {
 //   crash=false;
 // }
 }
+
