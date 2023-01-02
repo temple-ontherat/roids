@@ -4,7 +4,7 @@ class Ship {
       this.pte=[];
       this.i=0;
       this.pos=createVector(width/2,height/2);
-      transMag=this.pos.mag();
+    //  transMag=this.pos.mag();
       this.thing=createVector(width/2,height/2);
     //  this.pos=createVector(0,0);
       this.vel=createVector(0,0);
