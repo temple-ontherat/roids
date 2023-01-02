@@ -15,8 +15,8 @@ function preload() {
   sound1 = loadSound('pyowpyow.mp3');
   sound2=loadSound('roidBurst.mp3');
   sound3=loadSound('shipCrash.mp3');
-  image1=loadImage('roidImg3.png'); 
-  image2=loadImage('spaceImg.png'); 
+ // image1=loadImage('roidImg3.png'); 
+ // image2=loadImage('spaceImg.png'); 
 
 }
 function pyow() {
@@ -55,8 +55,8 @@ noLoop();
 }
 function draw() {
   background(220);
-  image(image2,0,0);
-fill(255);
+ // image(image2,0,0);
+//fill(255);
   text(displayMessage, width/3,55);
   textSize(20);
   text(displayMessage2, width/3,86);
