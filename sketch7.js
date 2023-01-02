@@ -8,7 +8,7 @@ let test=0;
 let guys=[];
 let timex=0;
 let score=0;
-let timeStart=80;
+let timeStart=90;
 let sound1,sound2,sound3;
 function preload() {
   soundFormats('mp3', 'ogg');
