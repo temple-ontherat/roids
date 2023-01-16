@@ -79,13 +79,13 @@ function draw() {
    timex=timeStart-(Math.floor(millis()/1000)-startTime);
 
 textSize(50);
-if (timex<0) {
-  background(0);
-  fill('red');
-  text("Time's up.",50,50);
-  gameOver();
-}
-  else {text("Fuel: "+timex,50,50)};
+// if (timex<0) {
+//   background(0);
+//   fill('red');
+//   text("Time's up.",50,50);
+//   gameOver();
+// }
+//   else {text("Fuel: "+timex,50,50)};
   text("Score: "+score,width*3/4,50);
   // if ((roids.length==0) || (shotCount>30)){
   //   makeRoids();
