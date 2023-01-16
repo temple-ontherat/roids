@@ -9,6 +9,7 @@ let guys=[];
 let timex=0;
 let score=0;
 let timeStart=90;
+let once=0;
 let sound1,sound2,sound3;
 function preload() {
   soundFormats('mp3', 'ogg');
@@ -149,12 +150,13 @@ function keyPressed() {
    if (keyCode === 68) {
  //   console.log("ship position",tri.pos.x,tri.pos.y);
    }
-   if (keyCode === ENTER) {
+   if ((keyCode === ENTER) && (once<1)) {
     displayMessage="";
     displayMessage2="";
     displayMessage3="";
     displayMessage4="";
     timeStart=90;
+    once++;
     startTime=Math.floor(millis()/1000);
 
    loop();
