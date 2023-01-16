@@ -13,7 +13,7 @@ let sound1,sound2,sound3;
 function preload() {
   soundFormats('mp3', 'ogg');
   sound1 = loadSound('pyowpyow.mp3');
-  sound2=loadSound('roidBurst.mp3');
+  sound2=loadSound('roidBurst2.mp3');
   sound3=loadSound('shipCrash.mp3');
   image1=loadImage('roidImg3.png'); 
   image2=loadImage('spaceImg.png'); 
@@ -51,7 +51,8 @@ function setup() {
     guys[i]=new Guys();
 
   }
-noLoop();
+  roidRage();
+  noLoop();
 }
 function draw() {
   background(220);
