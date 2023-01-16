@@ -15,9 +15,13 @@ function preload() {
   sound1 = loadSound('pyowpyow.mp3');
   sound2=loadSound('roidBurst2.mp3');
   sound3=loadSound('shipCrash.mp3');
+  sound4=loadSound('roidRage.mp3');
   image1=loadImage('roidImg3.png'); 
   image2=loadImage('spaceImg.png'); 
 
+}
+function roidRage() {
+  sound4.play();
 }
 function pyow() {
   sound1.play();
