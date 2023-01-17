@@ -22,7 +22,7 @@ function preload() {
 
 }
 function roidRage() {
-  sound4.play();
+  sound4.loop();
 }
 function pyow() {
   sound1.play();
