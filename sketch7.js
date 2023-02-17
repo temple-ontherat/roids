@@ -21,7 +21,7 @@ function preload() {
    sound2=loadSound('roidBurst2.mp3');
    
    sound3=loadSound('shipCrash.mp3');
-   sound3.setVolume(0);
+   sound3.setVolume(0.3);
 
   sound4=loadSound('roidRage.mp3');
   sound4.setVolume(1);
