@@ -10,9 +10,11 @@ let timex=0;
 let score=0;
 let timeStart=90;
 let sound1,sound2,sound3;
-let sound4;
+let sound4,sound5;
 let once=0;
 let alien;
+let alShot=[];
+let ntId;
 function preload() {
   // soundFormats('mp3', 'ogg');
    sound1 = loadSound('pyowpyow.mp3');
@@ -21,13 +23,18 @@ function preload() {
    sound2=loadSound('roidBurst2.mp3');
    
    sound3=loadSound('shipCrash.mp3');
-   sound3.setVolume(0.3);
+   sound3.setVolume(.3);
 
   sound4=loadSound('roidRage.mp3');
-  sound4.setVolume(1);
-  image1=loadImage('roidImg3.png'); 
+  sound4.setVolume(.6);
+  sound5=loadSound('alienVaporize.mp3');
+  sound5.setVolume(.3);
+
+  image1=loadImage('roidImg5.png'); 
   image2=loadImage('spaceImg.png'); 
   image3=loadImage('shipImage2.png'); 
+  image4=loadImage('alien4.png'); 
+  image5=loadImage('alien5.png'); 
 
 }
 function roidRage() {
@@ -55,10 +62,12 @@ function setup() {
   // sound3= new Audio('shipCrash.mp3');
   // sound2= new Audio('roidBurst2.mp3');
   // sound4= new Audio('roidRage.mp3');
-  alien=new Alien(30,20);
+  
   angleMode(DEGREES);
   toggle=1;
   tri=new Ship();
+  alien=new Alien(60,40);
+  // append(alShot,new Shot2());
   u=0;
   rot=5;
   roidAmt=15;
@@ -66,8 +75,9 @@ function setup() {
   displayMessage="Hit enter to start game.";
   displayMessage2="Right and left arrows for turning, up arrow";
   displayMessage3="for thrust, and space bar for shooting.";
-  displayMessage4="Press P to pause the game.";
- 
+  displayMessage4="Press p to pause the game.";
+  displayMessage5="Press r to restart game.";
+
   //displayMessage4="and space bar for shooting.";
   startTime=Math.floor(millis()/1000);
   for (i=0; i<3; i++) {
@@ -75,7 +85,7 @@ function setup() {
 
   }
   // console.log(sound4);
-  roidRage();
+ // roidRage();
     noLoop();
 }
 function draw() {
@@ -84,20 +94,47 @@ function draw() {
 
   background(220);
   image(image2,0,0);
-fill(255);
+  fill(255);
   text(displayMessage, width/3,55);
   textSize(20);
   text(displayMessage2, width/3,86);
   text(displayMessage3, width/3,115);
   text(displayMessage4, width/3,144);
+  text(displayMessage5, width/3,173);
+
 //  textSize(30);
  // text(fps.toFixed(2), width/2,55);
  // text(displayMessage4, width/3,145);
   alien.show();
   alien.edges();
   alien.update();
+  for (al of alShot) {
+  al.show();
+  al.update();
+  }
   if (alien.edges()) {
-    alien=new Alien(50,35);
+    alShot=[];
+    clearInterval(ntId);
+
+    alien=new Alien(60,40);
+
+    ntId=setInterval(alienShot,2000);
+  }
+  else {
+  //  setInterval(alienShot,2000);
+
+    // alShot=[];
+  }
+  if ((alien.colorR==255) && (alien.colorB==0) && (alien.colorC==0)) {
+    alien.alf=alien.alf-5;
+    alien.width=alien.width-6;
+    alien.height=alien.height-4;
+  }
+  else {
+    alien.alf=255;
+    alien.colorR=255;
+    alien.colorB=255;
+    alien.colorC=255;
   }
   for (roid in roids) {
     
@@ -152,6 +189,9 @@ textSize(50);
   if (keyIsDown(RIGHT_ARROW)) {
     tri.rotateRight();
   }
+  // if (keyIsDown(DOWN_ARROW)) {
+  //   append(alShot,new Shot2);
+  // }
   if (keyIsDown(LEFT_ARROW)) {
     tri.rotateLeft();
   }
@@ -178,14 +218,17 @@ function keyPressed() {
     blast();
  //   console.log("first shot pos",shot[0].pos.x,shot[0].pos.y);
    }
-   if (keyCode === 68) {
- //   console.log("ship position",tri.pos.x,tri.pos.y);
+   if (keyCode === 82) {
+      sound4.stop();
+      location.reload();
    }
    if ((keyCode === ENTER) && (once<1)) {
+    sound4.loop();
     displayMessage="";
     displayMessage2="";
     displayMessage3="";
     displayMessage4="";
+    displayMessage5="";
     timeStart=90;
     once++;
     startTime=Math.floor(millis()/1000);
@@ -194,6 +237,7 @@ function keyPressed() {
    let fs=fullscreen();
    fullscreen(!fs);
    displayMessage="";
+  // setInterval(alienShot,5000);
    }
    if (keyCode === 80) {
     if (toggle<0) { 
@@ -221,6 +265,16 @@ function blast() {
 }
 function checkShotCrash() {
   for(i=0; i<shot.length; i++) {
+   if (shot[i].pos.dist(alien.pos)<30 && (alien.colorB==255)) {
+    sound5.play();
+    alShot=[];
+    clearInterval(ntId);
+   // alien.color='red';
+    score=score+100;
+    alien.colorR=255;
+    alien.colorB=0;
+    alien.colorC=0;
+   } 
    for(j=0; j<roids.length; j++) {
    
   //   distance=p5.Vector.dist(shot[i].pos,roids[j].pos);
@@ -255,19 +309,52 @@ function makeRoids(rad,x,y) {
   roids[i]=new Roid(rad,x,y);
  }
 }
+// function checkShipCrash() {    
+//       //  crashShip2();    
+//     for(j=0; j<roids.length; j++) {   
+//       for (i=0; i<12; i++) {
+//           joe = p5.Vector.add(tri.pt[i], tri.pos);
+//           if ((joe.dist(roids[j].pos)<roids[j].radius-2)) {
+//           crash=true;
+//           shipCrash();  
+//           crashShip();
+//        //   console.log('true')
+//           break;          
+//       }
+//     // else {console.log('false')}    
+//   }
+// }
+// }
 function checkShipCrash() {    
-      //  crashShip2();    
-    for(j=0; j<roids.length; j++) {   
-      for (i=0; i<12; i++) {
-          joe = p5.Vector.add(tri.pt[i], tri.pos);
-          if ((joe.dist(roids[j].pos)<roids[j].radius-2)) {
-          crash=true;
-          shipCrash();  
-          crashShip();
-       //   console.log('true')
-          break;          
+  //  crashShip2();    
+for(j=0; j<roids.length; j++) {   
+  for (i=0; i<12; i++) {
+      joe = p5.Vector.add(tri.pt[i], tri.pos);
+      if ((joe.dist(roids[j].pos)<roids[j].radius-2)) {
+      crash=true;
+      shipCrash();  
+      crashShip();
+   //   console.log('true')
+      break;          
+  }
+      if ((alShot) && (alien.colorB==255)) {
+        for (let z=0; z<alShot.length; z++) {
+        if ((joe.dist(alShot[z].pos)<3) && (tri.color=B=255)) {
+        alShot=[];  
+        crash=true;
+        shipCrash();  
+        crashShip();
+        break;
       }
-    // else {console.log('false')}    
+    }   
+}
+      if ((alien.colorB==255) && (joe.dist(alien.pos)<10)) {
+        alShot=[];  
+        crash=true;
+        shipCrash();  
+        crashShip();
+        break;
+      }
   }
 }
 }
@@ -303,7 +390,7 @@ function gameOver() {
       textAlign(CENTER);
       text("Game Over",width/2,height/2);
       textSize(50);
-      text("Press refresh to play again",width/2,height/2+60);
+      text("Press r to play again",width/2,height/2+60);
       text("Press Esc to leave fullscreen mode.", width/3, height/6);
       fill(255);
       text("Score: "+score,width*3/4,50);
@@ -316,4 +403,8 @@ function gameOver() {
 //   tri.color=255;
 //   crash=false;
 // }
+}
+function alienShot() {
+ // setInterval(()=>append(alShot,new Shot2()),500);
+ append(alShot, new Shot2())
 }
