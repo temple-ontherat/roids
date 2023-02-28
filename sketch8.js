@@ -160,7 +160,7 @@ function draw() {
 // }
   if ((!alien) && (level>1)) {
     alienWidth=random(30,60);
-    alienHeight=random(20,40)
+    alienHeight=alienWidth*2/3;
     alien=new Alien(alienWidth,alienHeight);
     alienPresence();
   }
