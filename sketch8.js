@@ -45,8 +45,8 @@ function preload() {
   sound5.setVolume(.1);
   sound6=loadSound('alienPresence.mp3');
   sound6.setVolume(.1);
- // sound7=loadSound('alienGroan2.mp3');
- // sound7.setVolume(1);
+  sound7=loadSound('alienGroan2.mp3');
+  sound7.setVolume(.2);
   image1=loadImage('roidImg5.png'); 
   image2=loadImage('spaceImg.png'); 
   image3=loadImage('shipImage2.png'); 
@@ -54,9 +54,9 @@ function preload() {
   image5=loadImage('alien6.png'); 
 
 }
-//function alienGroan() {
-//  sound7.play();
-//}
+function alienGroan() {
+  sound7.play();
+}
 function alienPresence(){
   sound6.play();
 }
@@ -163,6 +163,7 @@ function draw() {
     alienHeight=alienWidth*2/3;
     alien=new Alien(alienWidth,alienHeight);
     alienPresence();
+   // alienGroan();
   }
   
   
@@ -184,7 +185,8 @@ function draw() {
     alienHeight=alienWidth*2/3;
     alien=new Alien(alienWidth,alienHeight);
     alienPresence();
-     
+   // alienGroan();
+
    // alien2=new Alien(60,40);
   //  alien3=new Alien(60,40);
     
@@ -245,23 +247,14 @@ textSize(50);
 
   //  }
   if (roids.length==0){
-  //  startTime=Math.floor(millis()/1000);
- //   timex=0;
- //shotInt=tempInt;
- if (shotInt>1000) {
+    alienGroan();
+    if (shotInt>1000) {
   shotInt-=500;
   tempShot=shotInt;
+    }
+ makeRoids(40);
+ pauseTime=0;
  }
- 
- 
- 
-//alien=new Alien(60,40);
- //   timeStart=timeStart-5;
-    makeRoids(40);
-    pauseTime=0;
-    //  break;
-
-   }
   
   q=0;
   for (guy in guys) {
