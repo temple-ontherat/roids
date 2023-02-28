@@ -47,6 +47,8 @@ function preload() {
   sound6.setVolume(.1);
   sound7=loadSound('alienGroan2.mp3');
   sound7.setVolume(.2);
+  sound8=loadSound('extraGuy.mp3');
+  sound8.setVolume(1);
   image1=loadImage('roidImg5.png'); 
   image2=loadImage('spaceImg.png'); 
   image3=loadImage('shipImage2.png'); 
@@ -75,6 +77,9 @@ function roidBurst(){
 }
 function shipCrash() {
   sound3.play();
+}
+function extraGuy() {
+  sound8.play();
 }
 function setup() {
   createCanvas(displayWidth, displayHeight);
@@ -127,10 +132,12 @@ function draw() {
 //  else {shotInt=tempShot}
   if ((score>6000) && (onceAgain<1)) {
     append(guys, new Guys());
+    extraGuy();
     onceAgain++;
   }
   if ((score>10000) && (onceAgain2<1)) {
     append(guys, new Guys());
+    extraGuy();
     onceAgain2++;
   }
   displayMessage6="Level "+level;
