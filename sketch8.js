@@ -29,6 +29,7 @@ let onceAgain=0;
 let onceAgain2=0;
 let lastScore=[];
 let alienWidth, alienHeight;
+let poopy;
 function preload() {
   // soundFormats('mp3', 'ogg');
    sound1 = loadSound('pyowpyow.mp3');
@@ -417,7 +418,13 @@ function checkShotCrash() {
 function makeRoids(rad,x,y) {
   startAction=Math.floor(millis()/1000);
   for (i=0; i<roidAmt; i++) {
+  
   roids[i]=new Roid(rad,x,y);
+  if (tri.pos.dist(roids[i].pos)<300) {
+    poopy=roids[i];
+    roids[i]=new Roid(rad,x,y);
+
+  }
  }
 //  startTime=0;
 //  startTime=Math.floor(millis()/1000);
