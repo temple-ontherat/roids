@@ -115,7 +115,7 @@ function draw() {
     extraGuy();
     onceAgain2++;
   }
-  displayMessage6="Level "+ Math.floor(fps);
+  displayMessage6="Level "+ level;
    clock=Math.floor(millis()/1000)-startAction-pauseTime;
   fps=frameRate();
   background(220);
