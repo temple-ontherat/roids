@@ -29,6 +29,7 @@ let onceAgain=0;
 let onceAgain2=0;
 let lastScore=[];
 let alienWidth, alienHeight;
+let roidCount;
 let poopy=[];
 fps=0;
 function preload() {
@@ -316,7 +317,11 @@ function checkShotCrash() {
 }
 function makeRoids(rad,x,y) {
   startAction=Math.floor(millis()/1000);
-  for (i=0; i<roidAmt; i++) {
+  if (level==2){
+    roidCount=4;
+  }
+  else {roidCount=roidAmt}
+  for (i=0; i<roidCount; i++) {
   
   roids[i]=new Roid(rad,x,y);
   while (tri.pos.dist(roids[i].pos)<500) {
