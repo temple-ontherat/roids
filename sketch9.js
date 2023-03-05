@@ -102,7 +102,7 @@ function draw() {
   if (clock<45) {
     shotInt=tempShot;
   }
-  if (clock>45) {
+  if ((clock>45) && (level !==3)) {
       shotInt=500;
   }
   if ((score>6000) && (onceAgain<1)) {
@@ -116,6 +116,9 @@ function draw() {
     onceAgain2++;
   }
   displayMessage6="Level "+level;
+  if (level==3) {
+    displayMessage6="Level 3 (Brad's level)";
+  }
    clock=Math.floor(millis()/1000)-startAction-pauseTime;
   fps=frameRate();
   background(220);
@@ -290,7 +293,12 @@ function checkShotCrash() {
      if ((roids[j].radius==20) && (shot[i].pos.dist(roids[j].pos)<28)) {
         x=roids[j].pos.x;
         y=roids[j].pos.y;
-         roids.splice(j, 1,new Roid(10,x,y), new Roid(10,x,y));       
+        if (level==3) {
+          roids.splice(j, 1,new Roid(10,x,y), new Roid(10,x,y)); 
+        }
+        else {
+          roids.splice(j,1);
+        }       
          shot.splice(i,1);
          score=score+20;
          roidBurst();
