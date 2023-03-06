@@ -22,7 +22,6 @@ let tempShot=5000;
 let tempInt;
 let roidAmt=7;
 let pauseTime=0;
-let clock;
 let levelStart;
 let startAction;
 let onceAgain=0;
@@ -31,7 +30,8 @@ let lastScore=[];
 let alienWidth, alienHeight;
 let roidCount;
 let poopy=[];
-fps=0;
+let clock=0;
+let fps=0;
 function preload() {
   // soundFormats('mp3', 'ogg');
    sound1 = loadSound('pyowpyow.mp3');
@@ -94,6 +94,7 @@ function setup() {
   displayMessage3="for thrust, and space bar for shooting.";
   displayMessage4="Press p to pause the game.";
   displayMessage5="Press r to restart game.";
+  
   for (i=0; i<3; i++) {
     guys[i]=new Guys();
   }
@@ -182,8 +183,24 @@ function draw() {
   }
   textSize(30);
   text(displayMessage6, width/4,55);
-textSize(50);
+  textSize(50);
   text("Score: "+score,width*3/4,50);
+  if (clock) {
+  fill(255,255,255);
+  textSize(30)
+  text("Level Timer: "+clock, width/14,55);
+  }
+  if ((clock) && (clock>=45) && (clock%2==0) && (level !=1) && (level !=3)) {
+    fill(255,0,0);
+    stroke(10);
+    textSize(40);
+    text("RAPID-FIRE MODE", width/14,90);
+    fill(255,255,255);
+  }
+  if ((clock) && (clock<45)) {
+    fill(255,255,255);
+    textSize(30);
+  }
   if (roids.length==0){
     alienGroan();
     if (shotInt>1000) {
@@ -224,7 +241,7 @@ textSize(50);
         test=0;
         }
         crash=false;
-}
+      }
 function keyPressed() { 
    if (keyCode === 32) {
     pyow();
