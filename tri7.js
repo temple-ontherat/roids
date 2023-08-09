@@ -24,19 +24,22 @@ class Ship {
     applyForce() {
       this.angle=(u*PI/180)-PI/2;
       this.thrust=p5.Vector.fromAngle(this.angle);
-      this.thrust.mult(0.30);
+     // this.thrust.mult(0.30);  //original
+      this.thrust.mult(deltaTime*3/100); //test   
       this.vel.add(this.thrust);
     }
     rotateRight() {
-        u=u+rot;
+       // u=u+rot; //original
+        u=u+rot*deltaTime/3;
         for (i=0; i<13; i++) {
-        this.pt[i].rotate(rot);
+        this.pt[i].rotate(rot*deltaTime/3);
         }
       }
       rotateLeft() {
-        u=u-rot;
+       // u=u-rot; //original
+        u=u-rot*deltaTime/3;
         for (i=0; i<13; i++) {
-        this.pt[i].rotate(-rot); 
+        this.pt[i].rotate(-rot*deltaTime/3); 
         }   
       }
     update() {
