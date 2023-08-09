@@ -6,7 +6,8 @@ class Alien {
     this.pos= createVector(random(0,width),10);
     this.vel= createVector(random(-5,5),random(0,5));
     this.vel.normalize();
-    this.vel.mult(4);
+    //this.vel.mult(4); //original
+    this.vel.mult(deltaTime/4);  
     this.colorR=255;
     this.colorG=255;
     this.colorB=255;
