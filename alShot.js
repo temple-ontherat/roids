@@ -5,8 +5,8 @@ class Shot2 {
 
     this.vel=p5.Vector.sub(tri.pos,this.pos);
     this.vel=this.vel.normalize();
-    this.vel.mult(4);
-    
+  //this.vel.mult(4); // original
+    this.vel.mult(deltaTime/6);//test    
    // Shot 
     }         
     update(){      //Shot
