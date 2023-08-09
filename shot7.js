@@ -10,7 +10,8 @@ class Shot {
     this.thrust=p5.Vector.fromAngle(this.angle);
     this.thrust.normalize();
     this.vel=this.thrust.copy();
-    this.vel.setMag(7);
+    //this.vel.setMag(7); //original
+    this.vel.setMag(deltaTime/2); //test   
    // Shot 
     }
     // applyForce(inc) {  //Shot
